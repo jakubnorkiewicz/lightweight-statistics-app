@@ -9,16 +9,24 @@ import Result from './components/result/Result.vue';
 import NotFound from './components/nav/NotFound.vue';
 
 const store = createStore({
-    state() {
-        return {
-            dataset: 'lol'
-        };
+    state: {
+        dataset: [] 
     },
-
-    mutations: {
-        setDataset(state, payload) {
-            state.dataset = payload.dataset;
-        }
+    actions: {
+        setDataset({state}, newDataset) {
+            state.dataset = newDataset.split(',').map( n => +n);
+        },
+    },
+    getters: {
+        sum(state) {
+            if (state.dataset.length > 0) {
+                let sum = 0;
+             state.dataset.forEach(n => { 
+                 sum += n;
+             });
+             return sum / state.dataset.length;
+            }
+        },
     }
 });
 

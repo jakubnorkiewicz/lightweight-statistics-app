@@ -1,17 +1,20 @@
 <template>
-  <the-navigation></the-navigation>
+  <navigation></navigation>
   <main>
     <router-view></router-view>
   </main>
+  <buttons></buttons>
 </template>
 
 <script>
 
-import TheNavigation from './components/nav/TheNavigation.vue';
+import Buttons from './components/nav/Buttons.vue';
+import Navigation from './components/nav/Navigation.vue';
 
 export default {
   components: {
-    TheNavigation,
+    Navigation,
+    Buttons,
   },
 };
 </script>

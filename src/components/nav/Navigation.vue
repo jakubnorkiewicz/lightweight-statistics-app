@@ -1,45 +1,61 @@
 <template>
-    <div>
-        <button @click="previousStep" v-show="!isFirstStep()">
-            Back
-        </button>
-
-        <button @click="nextStep">
-            {{ nextStepButtonText() }}
-        </button>
-    </div>
+  <header>
+    <nav>
+      <ul>
+        <li>
+          <router-link to="/input">Input</router-link>
+        </li>
+        <li>
+          <router-link to="/calculate">Calculate</router-link>
+        </li>
+        <li>
+          <router-link to="/result">Result</router-link>
+        </li>
+      </ul>
+    </nav>
+  </header>
 </template>
 
-<script>
-    export default {
-        methods: {
-            isFirstStep() {
-                return this.$route.name === "input"
-            },
-            nextStepButtonText() {
-                if (this.$route.name === 'calculate') {
-                    return 'Submit'
-                } else {
-                    return 'Next'
-                }
-            },
-            previousStep() {
-                if (this.$route.name === 'calculate') {
-                    this.$router.push('/input')
-                } else if (this.$route.name === 'result') {
-                    this.$router.push('/calculate') 
-                }
-            },
-            nextStep() {
-                if (this.$route.name === 'calculate') {
-                    submit() 
-                } else if (this.$route.name === 'input') {
-                    this.$router.push('/calculate')
-                }
-            },
-            submit() {
-                alert('Submitted')
-            }
-        }   
-    }
-</script>
+<style scoped>
+header {
+  width: 100%;
+  height: 5rem;
+  background-color: #11005c;
+}
+
+nav {
+  height: 100%;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+li {
+  margin: 0 2rem;
+}
+
+a {
+  text-decoration: none;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  display: inline-block;
+}
+
+a:hover,
+a:active,
+a.router-link-active {
+  color: #f1a80a;
+  border-color: #f1a80a;
+  background-color: #1a037e;
+}
+</style>

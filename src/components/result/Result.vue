@@ -1,17 +1,6 @@
 <template>
-  <button @click="confirmInput">Go back</button>
+<div>test</div>
 </template>
-
-<script>
-
-export default {
-  methods: {
-    confirmInput() {
-      this.$router.back();
-    }
-  }
-};
-</script>
 
 <style scoped>
 
