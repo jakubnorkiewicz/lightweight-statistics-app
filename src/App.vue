@@ -1,9 +1,11 @@
 <template>
+<div class="container">
   <navigation></navigation>
-  <main>
+  <main class="box mt-5 ml-5 mr-5">
     <router-view></router-view>
   </main>
   <buttons></buttons>
+</div>
 </template>
 
 <script>

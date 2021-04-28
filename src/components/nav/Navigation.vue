@@ -1,61 +1,33 @@
 <template>
   <header>
-    <nav>
-      <ul>
-        <li>
-          <router-link to="/input">Input</router-link>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Lightweight Statistics App</a>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <router-link class="nav-link" to="/input">Input</router-link>
         </li>
-        <li>
-          <router-link to="/calculate">Calculate</router-link>
+        <li class="nav-item">
+          <router-link class="nav-link" to="/calculate">Calculate</router-link>
         </li>
-        <li>
-          <router-link to="/result">Result</router-link>
+        <li class="nav-item">
+          <router-link class="nav-link" to="/result">Result</router-link>
         </li>
       </ul>
+          </div>
     </nav>
   </header>
 </template>
 
 <style scoped>
-header {
-  width: 100%;
-  height: 5rem;
-  background-color: #11005c;
-}
-
-nav {
-  height: 100%;
-}
-
-ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-li {
-  margin: 0 2rem;
-}
-
-a {
-  text-decoration: none;
-  background: transparent;
-  border: 1px solid transparent;
-  cursor: pointer;
-  color: white;
-  padding: 0.5rem 1.5rem;
-  display: inline-block;
-}
-
-a:hover,
-a:active,
-a.router-link-active {
-  color: #f1a80a;
-  border-color: #f1a80a;
-  background-color: #1a037e;
-}
+  header {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    border-radius: 10px;
+    padding: 1rem;
+    background-color: gray;
+    color: white;
+    text-align: center;
+    width: 100%;
+  }
 </style>

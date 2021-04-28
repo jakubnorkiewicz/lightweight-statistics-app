@@ -1,17 +1,26 @@
 <template>
     <div>
-        <button @click="previousStep" v-show="!isFirstStep()">
+        <button class="btn btn-primary mb-3" @click="previousStep" v-show="!isFirstStep()">
             Back
         </button>
-
-        <button @click="nextStep" v-show="!isLastStep()">
+        
+        <button :disabled="!isDisable()" class="btn btn-primary mb-3" @click="nextStep" v-show="!isLastStep()">
             {{ nextStepButtonText() }}
         </button>
     </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
     export default {
+        computed: {
+    dataset: {
+      get() {
+        return this.$store.state.dataset
+      },
+    }
+        },
         methods: {
             isFirstStep() {
                 return this.$route.name === "input"
@@ -42,7 +51,10 @@
             },
             submit() {
                 alert('Submitted')
-            }
-        }   
+            },
+            ...mapGetters([
+            'isDisable'
+            ])
+        }
     }
 </script>
