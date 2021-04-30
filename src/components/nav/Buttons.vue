@@ -1,11 +1,11 @@
 <template>
     <div>
-        <button class="btn btn-primary mb-3" @click="previousStep" v-show="!isFirstStep()">
+        <button class="btn btn-primary btn-lg mb-3 me-3" @click="previousStep" v-show="!isFirstStep()">
             Back
         </button>
         
-        <button :disabled="!isDisable()" class="btn btn-primary mb-3" @click="nextStep" v-show="!isLastStep()">
-            {{ nextStepButtonText() }}
+        <button :disabled="!isDisable()" class="btn btn-primary btn-lg mb-3" @click="nextStep" v-show="!isLastStep()">
+            Next
         </button>
     </div>
 </template>
@@ -15,11 +15,11 @@ import { mapGetters } from 'vuex';
 
     export default {
         computed: {
-    dataset: {
-      get() {
-        return this.$store.state.dataset
-      },
-    }
+            dataset: {
+                get() {
+                    return this.$store.state.dataset
+                },
+            }
         },
         methods: {
             isFirstStep() {
@@ -27,13 +27,6 @@ import { mapGetters } from 'vuex';
             },
             isLastStep() {
                 return this.$route.name === "result"
-            },
-            nextStepButtonText() {
-                if (this.$route.name === 'calculate') {
-                    return 'Submit'
-                } else {
-                    return 'Next'
-                }
             },
             previousStep() {
                 if (this.$route.name === 'calculate') {
@@ -44,13 +37,10 @@ import { mapGetters } from 'vuex';
             },
             nextStep() {
                 if (this.$route.name === 'calculate') {
-                    this.submit(); 
+                    this.$router.push('/result'); 
                 } else if (this.$route.name === 'input') {
                     this.$router.push('/calculate')
-                }
-            },
-            submit() {
-                alert('Submitted')
+                } 
             },
             ...mapGetters([
             'isDisable'

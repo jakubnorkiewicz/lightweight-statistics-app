@@ -40,17 +40,22 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
-  data() {
-    return {
-    formula: ''
-    }
-  },
   computed: {
-    dataset() {
+    dataset: {
+      get() {
       return this.$store.state.dataset;
+      }
+    },
+    formula: {
+      get() {
+        return this.$store.state.formula;
+      },
+      set(selectedFormula) {
+        this.setFormula(selectedFormula);
+      }
     }
   },
   methods: {
@@ -65,6 +70,9 @@ export default {
       'max',
       'min',
       'range'
+    ]),
+    ...mapActions([
+      'setFormula'
     ])
   }
 }

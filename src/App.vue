@@ -1,7 +1,7 @@
 <template>
 <div class="container">
   <navigation></navigation>
-  <main class="box mt-5 ml-5 mr-5">
+  <main class="box mt-5 mb-3">
     <router-view></router-view>
   </main>
   <buttons></buttons>

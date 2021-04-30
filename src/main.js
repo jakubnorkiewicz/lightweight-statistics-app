@@ -12,12 +12,25 @@ import NotFound from './components/nav/NotFound.vue';
 
 const store = createStore({
     state: {
-        dataset: [] 
+        dataset: [],
+        formula: ''
     },
-    actions: {
-        setDataset({state}, newDataset) {
+    
+    mutations: {
+        setDataset(state, newDataset) {
             state.dataset = newDataset;
         },
+        setFormula(state, selectedFormula) {
+            state.formula = selectedFormula;
+        }
+    },
+    actions: {
+        setDataset(context, newDataset ) {
+            context.commit('setDataset', newDataset);
+        },
+        setFormula (context, selectedFormula) {
+            context.commit('setFormula', selectedFormula);
+        }
     },
     getters: {
         isDisable(state) {
@@ -64,15 +77,16 @@ const store = createStore({
         },
 
         weightedMean(state, getters) {
+            let numArray = getters.toArray;
             let weights = []
             let numbers = []
             let total_weight = 0;
             let weights_sum = 0;
-            let numArray = getters.toArray
+            
 
 
-            if(numArray.length % 2 !== 0) {
-                alert('The dataset should contain atleast 2 numbers')
+            if(numArray.length % 2 != 0) {
+                alert('The dataset should contain atleast 2 numbers and the number of elements in dataset should be even.')
             }
 
             for(var i = 0; i < numArray.length; i += 2) {
@@ -84,6 +98,11 @@ const store = createStore({
                 total_weight += weights[j] * numbers[j];
                 weights_sum += weights[j];
             }
+            console.log(numArray)
+            console.log(weights)
+            console.log(numbers)
+            console.log(total_weight)
+            console.log(weights_sum)
             return (total_weight / weights_sum).toFixed(2);
 
         },
@@ -148,14 +167,14 @@ const store = createStore({
         mode(state, getters) {
             let numArray = getters.toArray
             let frequency = {}; // object containing frequences of each element.
-            let bestOccurence = 0; // holds the max frequency.
+            let bestOccurence = 0; // holds the best frequency.
             let mode = [];
 
             for (var i in numArray) {
                 frequency[numArray[i]] = (frequency[numArray[i]] || 0) + 1; // increment frequency.
 
-                if (frequency[numArray[i]] > bestOccurence) { // is this frequency > max so far ?
-                    bestOccurence = frequency[numArray[i]]; // update max.
+                if (frequency[numArray[i]] > bestOccurence) { // is this frequency > best so far ?
+                    bestOccurence = frequency[numArray[i]]; // update best.
                 }
             }
 
