@@ -33,24 +33,32 @@ const store = createStore({
         }
     },
     getters: {
-        isDisable(state) {
-            return state.dataset.length > 0;
+        isPopulated(state) {
+            if(state.dataset.length > 0) {
+                return true;
+            } else {
+                return false;
+            }
         },
 
         toArray(state) {
             let numArray = Array.from(state.dataset.split(','), Number);
+
             return numArray;
         },
 
         min(state, getters) {
             let numArray = getters.toArray;
-            return Math.max.apply(null, numArray);
+            let min = Math.max.apply(null, numArray);
 
+            return min;
         },
 
         max(state, getters) {
             let numArray = getters.toArray;
-            return Math.min.apply(null, numArray);
+            let max = Math.min.apply(null, numArray);
+
+            return max;
         },
 
         range(state, getters) {
@@ -61,30 +69,33 @@ const store = createStore({
         }, 
 
         sum(state, getters) {
-            let numArray = getters.toArray
+            let numArray = getters.toArray;
             let sum = 0;
-                numArray.forEach(n => { 
-                 sum += n;
-             });
-             return sum;
+
+            numArray.forEach(n => { 
+            sum += n;
+            });
+
+            return sum;
         },
 
         mean(state, getters) {
-            let numArray = getters.toArray
-            if (numArray.length > 0) {
-             return getters.sum / numArray.length;
-            }
-        },
+            let numArray = getters.toArray;
+            let mean = 0;
+
+             mean = getters.sum / numArray.length;
+
+             return mean;
+            },
 
         weightedMean(state, getters) {
             let numArray = getters.toArray;
-            let weights = []
-            let numbers = []
-            let total_weight = 0;
-            let weights_sum = 0;
+            let weights = [];
+            let numbers = [];
+            let totalWeight = 0;
+            let weightsSum = 0;
+            let weightedMean = 0
             
-
-
             if(numArray.length % 2 != 0) {
                 alert('The dataset should contain atleast 2 numbers and the number of elements in dataset should be even.')
             }
@@ -95,20 +106,18 @@ const store = createStore({
             }
 
             for(var j = 0; j < weights.length; j += 1) {
-                total_weight += weights[j] * numbers[j];
-                weights_sum += weights[j];
+                totalWeight += weights[j] * numbers[j];
+                weightsSum += weights[j];
             }
-            console.log(numArray)
-            console.log(weights)
-            console.log(numbers)
-            console.log(total_weight)
-            console.log(weights_sum)
-            return (total_weight / weights_sum).toFixed(2);
+            
+            weightedMean = (totalWeight / weightsSum).toFixed(2);
 
+            return weightedMean;
         },
 
         median(state, getters) {
-            let numArray = getters.toArray
+            let numArray = getters.toArray;
+            let median = 0;
 
             if(numArray.length === 0) {
                 return 0;
@@ -119,13 +128,15 @@ const store = createStore({
                 return a-b;
             });
         
-            var half = Math.floor(numArray.length / 2);
+            let half = Math.floor(numArray.length / 2);
         
-            if (numArray.length % 2) {
+            if(numArray.length % 2) {
                 return numArray[half];
             }
         
-                return (numArray[half - 1] + numArray[half]) / 2.0;
+            median = (numArray[half - 1] + numArray[half]) / 2.0;
+
+            return median;
         },
 
         variance(state, getters) {
@@ -150,10 +161,6 @@ const store = createStore({
 
             variance = substractedSquaredNumbersSum / (numArray.length - 1);
 
-            console.log(squaredSum);
-            console.log(dividedSquaredSum);
-            console.log(numArray.length)
-            console.log(squaredNumbersSum)
             return variance;
         },
 
@@ -180,18 +187,40 @@ const store = createStore({
 
             for (var k in frequency) {
                 if (frequency[k] == bestOccurence) {
-                mode.push(k);
+                    mode.push(k);
                 }
             }
 
             return mode;
+        },
+
+        zScore(state, getters) {
+            let numArray = getters.toArray;
+            let mean = getters.mean;
+            let standardDeviation = getters.standardDeviation;
+            let zScore = 0;
+
+            zScore = (numArray[1] - mean) / standardDeviation;
+
+            return zScore;
+        },
+
+        meanAbsoluteDeviation(state, getters) {
+            let numArray = getters.toArray;
+            let mean = getters.mean;
+            let meanAbsoluteDeviation = 0;
+
+            for(var i =0; i < numArray.length; i++) {
+            meanAbsoluteDeviation += Math.abs(numArray[i] - mean);
+            }
+
+            return meanAbsoluteDeviation; 
         }
     }
-
 });
 
 const router = createRouter({
-    history: createWebHistory() ,
+    history: createWebHistory(),
     routes: [
         { path: '/', redirect: '/input' },
         { path: '/input', name: 'input', component: Input },

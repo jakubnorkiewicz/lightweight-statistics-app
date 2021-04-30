@@ -1,6 +1,9 @@
 <template>
 <div class="container">
   <navigation></navigation>
+  <div class="page-name">
+    <h1>{{ $route.name }}</h1>
+  </div>
   <main class="box mt-5 mb-3">
     <router-view></router-view>
   </main>
@@ -21,7 +24,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" >
 * {
   box-sizing: border-box;
 }
@@ -31,6 +34,10 @@ html {
 }
 
 body {
-  margin: 0;
+  .page-name {
+    h1 {
+      
+    }
+  }
 }
 </style>

@@ -4,7 +4,7 @@
             Back
         </button>
         
-        <button :disabled="!isDisable()" class="btn btn-primary btn-lg mb-3" @click="nextStep" v-show="!isLastStep()">
+        <button :disabled="!isPopulated()" class="btn btn-primary btn-lg mb-3" @click="nextStep" v-show="!isLastStep()">
             Next
         </button>
     </div>
@@ -43,7 +43,7 @@ import { mapGetters } from 'vuex';
                 } 
             },
             ...mapGetters([
-            'isDisable'
+            'isPopulated'
             ])
         }
     }
