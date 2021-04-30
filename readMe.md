@@ -8,8 +8,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-[node.js and npm](https://nodejs.org/en/download/)
-Visual Studio Code / other code editor
+1. [node.js and npm](https://nodejs.org/en/download/)
+2. Visual Studio Code / other code editor
 
 ### Installing
 
