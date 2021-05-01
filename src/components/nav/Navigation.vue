@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="mb-5">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="/">Lightweight Statistics App</a>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -25,8 +25,6 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     border-radius: 10px;
     padding: 1rem;
-    background-color: gray;
-    color: white;
     text-align: center;
     width: 100%;
   }
