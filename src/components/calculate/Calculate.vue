@@ -1,16 +1,58 @@
 <template>
-  <h2>Your numbers:</h2>
   <div v-if="!isPopulated()">
     <div class="alert alert-danger" role="alert">
       Please go back to Input page and populate the field with numbers.
     </div>
   </div>
   <div v-else>
-    <h3>{{ dataset }}</h3>
+     <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="min"
+        name="min"
+        value="min"
+        v-model="formula"
+      />
+      <label class="form-check-label" for="min">Min</label>
+    </div>
     <div class="form-check">
       <input
         class="form-check-input"
-        type="radio"
+        type="checkbox"
+        id="max"
+        name="max"
+        value="max"
+        v-model="formula"
+      />
+      <label class="form-check-label" for="max">Max</label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="range"
+        name="range"
+        value="range"
+        v-model="formula"
+      />
+      <label class="form-check-label" for="range">Range</label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="sum"
+        name="sum"
+        value="sum"
+        v-model="formula"
+      />
+      <label class="form-check-label" for="sum">Sum</label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
         id="mean"
         name="mean"
         value="mean"
@@ -21,7 +63,7 @@
     <div class="form-check">
       <input
         class="form-check-input"
-        type="radio"
+        type="checkbox"
         id="weightedMean"
         name="weightedmean"
         value="weightedmean"
@@ -32,7 +74,7 @@
     <div class="form-check">
       <input
         class="form-check-input"
-        type="radio"
+        type="checkbox"
         id="median"
         name="median"
         value="median"
@@ -43,7 +85,7 @@
     <div class="form-check">
       <input
         class="form-check-input"
-        type="radio"
+        type="checkbox"
         id="standardDeviation"
         name="standarddeviation"
         value="standarddeviation"
@@ -56,7 +98,7 @@
     <div class="form-check">
       <input
         class="form-check-input"
-        type="radio"
+        type="checkbox"
         id="variance"
         name="variance"
         value="variance"
@@ -67,40 +109,29 @@
     <div class="form-check">
       <input
         class="form-check-input"
-        type="radio"
-        id="min"
-        name="min"
-        value="min"
+        type="checkbox"
+        id="mode"
+        name="mode"
+        value="mode"
         v-model="formula"
       />
-      <label class="form-check-label" for="min">Min</label>
+      <label class="form-check-label" for="variance">Mode</label>
     </div>
     <div class="form-check">
       <input
         class="form-check-input"
-        type="radio"
-        id="max"
-        name="max"
-        value="max"
-        v-model="formula"
-      />
-      <label class="form-check-label" for="max">Max</label>
-    </div>
-    <div class="form-check">
-      <input
-        class="form-check-input"
-        type="radio"
+        type="checkbox"
         id="zScore"
         name="zscore"
         value="zscore"
         v-model="formula"
       />
-      <label class="form-check-label" for="zscore">z Score</label>
+      <label class="form-check-label" for="zscore">z-Score</label>
     </div>
     <div class="form-check">
       <input
         class="form-check-input"
-        type="radio"
+        type="checkbox"
         id="meanAbsoluteDeviation"
         name="meanabsolutedeviation"
         value="meanabsolutedeviation"
@@ -110,53 +141,59 @@
         >Mean Absolute Deviation</label
       >
     </div>
-    <div class="form-check">
-      <input
-        class="form-check-input"
-        type="radio"
-        id="sum"
-        name="sum"
-        value="sum"
-        v-model="formula"
-      />
-      <label class="form-check-label" for="sum">Sum</label>
+    <h2>Your numbers:</h2>
+    <div class="card">
+      <div class="card-body">
+        {{ dataset }}
+      </div>
     </div>
-
-    <div v-if="formula === 'mean'">
-      {{ mean() }}
-    </div>
-    <div v-else-if="formula === 'weightedmean'">
-      {{ weightedMean() }}
-    </div>
-    <div v-else-if="formula === 'median'">
-      {{ median() }}
-    </div>
-    <div v-else-if="formula === 'standarddeviation'">
-      {{ standardDeviation() }}
-    </div>
-    <div v-else-if="formula === 'variance'">
-      {{ variance() }}
-    </div>
-    <div v-else-if="formula === 'mode'">
-      {{ mode() }}
-    </div>
-    <div v-else-if="formula === 'min'">
+     <div v-show="formula.includes('min')">
+      The minimum number equals:
       {{ min() }}
     </div>
-    <div v-else-if="formula === 'max'">{
-      { max() }}
+    <div v-show="formula.includes('max')">
+      The maximum number equals:
+      {{ max() }}
     </div>
-    <div v-else-if="formula === 'range'">
+    <div v-show="formula.includes('range')">
+      The range is:
       {{ range() }}
-      </div>
-    <div v-else-if="formula === 'zscore'">
+    </div>
+    <div v-show="formula.includes('sum')">
+      The sum equals:
+      {{ sum() }}
+    </div>
+    <div v-show="formula.includes('mean')">
+      The mean equals:
+      {{ mean() }}
+    </div>
+    <div v-show="formula.includes('weightedmean')">
+      The weighted mean equals:
+      {{ weightedMean() }}
+    </div>
+    <div v-show="formula.includes('median')">
+      The median equals:
+      {{ median() }}
+    </div>
+    <div v-show="formula.includes('standarddeviation')">
+      The standard deviation equals:
+      {{ standardDeviation() }}
+    </div>
+    <div v-show="formula.includes('variance')">
+      The variance equals:
+      {{ variance() }}
+    </div>
+    <div v-show="formula.includes('mode')">
+      The mode equals:
+      {{ mode() }}
+    </div>
+    <div v-show="formula.includes('zscore')">
+      The z-Score equals:
       {{ zScore() }}
     </div>
-    <div v-else-if="formula === 'meanabsolutedeviation'">
+    <div v-show="formula.includes('meanabsolutedeviation')">
+      The mean absolute deviation equals:
       {{ meanAbsoluteDeviation() }}
-    </div>
-    <div v-else-if="formula === 'sum'">
-      {{ sum() }}
     </div>
   </div>
 </template>
