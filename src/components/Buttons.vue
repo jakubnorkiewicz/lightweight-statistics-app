@@ -23,22 +23,22 @@ import { mapGetters } from 'vuex';
         },
         methods: {
             isFirstStep() {
-                return this.$route.name === "input"
+                return this.$route.name === "home"
             },
             isLastStep() {
-                return this.$route.name === "result"
+                return this.$route.name === "data visualisation"
             },
             previousStep() {
                 if (this.$route.name === 'calculate') {
-                    this.$router.push('/input')
-                } else if (this.$route.name === 'result') {
+                    this.$router.push('/home')
+                } else if (this.$route.name === 'data visualisation') {
                     this.$router.push('/calculate') 
                 }
             },
             nextStep() {
                 if (this.$route.name === 'calculate') {
-                    this.$router.push('/result'); 
-                } else if (this.$route.name === 'input') {
+                    this.$router.push('/data-visualisation'); 
+                } else if (this.$route.name === 'home') {
                     this.$router.push('/calculate')
                 } 
             },

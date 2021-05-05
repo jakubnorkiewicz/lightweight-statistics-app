@@ -5,15 +5,19 @@
       <h1>{{ $route.name }}</h1>
     </div>
     <main class="box mt-5 mb-3">
-      <router-view></router-view>
+      <router-view v-slot="{ Component }">
+        <transition name="fade" mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </router-view>
     </main>
     <buttons></buttons>
   </div>
 </template>
 
 <script>
-import Buttons from './components/nav/Buttons.vue';
-import Navigation from './components/nav/Navigation.vue';
+import Buttons from './components/Buttons.vue';
+import Navigation from './components/Navigation.vue';
 
 export default {
   components: {
@@ -34,5 +38,15 @@ html {
 
 .page-name h1 {
   text-transform: capitalize;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.4s;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

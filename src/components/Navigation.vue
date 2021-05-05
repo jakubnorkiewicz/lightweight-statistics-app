@@ -4,15 +4,15 @@
       <a class="navbar-brand" href="/">Lightweight Statistics App</a>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav ms-auto me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <router-link class="nav-link" to="/input">Input</router-link>
+          <router-link class="nav-link" to="/home">Home</router-link>
         </li>
         <li class="nav-item">
           <router-link class="nav-link" to="/calculate">Calculate</router-link>
         </li>
         <li class="nav-item">
-          <router-link class="nav-link" to="/result">Result</router-link>
+          <router-link class="nav-link" to="/data-visualisation">Data Visualisation</router-link>
         </li>
       </ul>
           </div>
@@ -27,5 +27,13 @@
     padding: 1rem;
     text-align: center;
     width: 100%;
+  }
+
+  header nav .navbar-brand {
+    font-size: 2rem;
+  }
+
+  .router-link-active .router-link-exact-active {
+    
   }
 </style>
