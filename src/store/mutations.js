@@ -1,8 +1,8 @@
 export default {
-  setDataset(state, newDataset) {
-    state.dataset = newDataset;
-  },
-  setFormula(state, selectedFormula) {
-    state.formula = selectedFormula;
-  }
-};
+    setDataset(state, value) {
+        state.dataset = value;
+      },
+      setFormula(state, value) {
+        state.formula = value;
+      }
+}

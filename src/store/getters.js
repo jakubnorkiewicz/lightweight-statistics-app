@@ -9,32 +9,31 @@ export default {
 
   toArray(state) {
     const numArray = Array.from(state.dataset.split(','), Number);
-
     return numArray;
   },
 
-  min(state, getters) {
+  min(_, getters) {
     const numArray = getters.toArray;
     let min = Math.min.apply(null, numArray);
 
     return min;
   },
 
-  max(state, getters) {
+  max(_, getters) {
     const numArray = getters.toArray;
     let max = Math.max.apply(null, numArray);
 
     return max;
   },
 
-  range(state, getters) {
+  range(_, getters) {
     const max = getters.max;
     const min = getters.min;
 
-    return min + '-' + max;
+    return 'The dataset range is from ' + min + ' to ' + max;
   },
 
-  sum(state, getters) {
+  sum(_, getters) {
     const numArray = getters.toArray;
     let sum = 0;
 
@@ -45,7 +44,7 @@ export default {
     return sum;
   },
 
-  mean(state, getters) {
+  mean(_, getters) {
     const numArray = getters.toArray;
     let mean = 0;
 
@@ -53,7 +52,7 @@ export default {
     return mean;
   },
 
-  weightedMean(state, getters) {
+  weightedMean(_, getters) {
     const numArray = getters.toArray;
     let weights = [];
     let numbers = [];
@@ -71,12 +70,18 @@ export default {
       weightsSum += weights[j];
     }
 
-    weightedMean = (totalWeight / weightsSum).toFixed(2);
+    weightedMean = (totalWeight / weightsSum)
 
-    return weightedMean;
+    if(isNaN(weightedMean)) {
+      return "Please follow the syntax for Weighted Mean."
+    } else if(weightedMean % 1 === 1) {
+      return weightedMean; 
+    } else {
+      return weightedMean;
+    }
   },
 
-  median(state, getters) {
+  median(_, getters) {
     const numArray = getters.toArray;
     let median = 0;
 
@@ -100,7 +105,7 @@ export default {
     return median;
   },
 
-  variance(state, getters) {
+  variance(_, getters) {
     const numArray = getters.toArray;
     //Calculate sum
     const sum = getters.sum;
@@ -121,17 +126,17 @@ export default {
 
     variance = substractedSquaredNumbersSum / (numArray.length - 1);
 
-    return variance;
+    return +variance.toFixed(6);
   },
 
-  standardDeviation(state, getters) {
+  standardDeviation(_, getters) {
     const variance = getters.variance;
     let standardDeviation = Math.sqrt(variance);
 
-    return standardDeviation;
+    return +standardDeviation.toFixed(6);
   },
 
-  mode(state, getters) {
+  mode(_, getters) {
     const numArray = getters.toArray;
     let occurence = {}; // object containing frequences of each element.
     let bestOccurence = 0; // holds the best occurence.
@@ -153,13 +158,13 @@ export default {
     }
 
     if (bestOccurence == 1) {
-      return 'Cannot find mode. Numbers do not repeat.';
+      return 'Cannot find mode. Numbers in the dataset do not repeat.';
     } else {
       return mode;
     }
   },
 
-  zScore(state, getters) {
+  zScore(_, getters) {
     const numArray = getters.toArray;
     const mean = getters.mean;
     const standardDeviation = getters.standardDeviation;
@@ -167,10 +172,10 @@ export default {
 
     zScore = (numArray[1] - mean) / standardDeviation;
 
-    return zScore;
+    return +zScore.toFixed(6);
   },
 
-  meanAbsoluteDeviation(state, getters) {
+  meanAbsoluteDeviation(_, getters) {
     const numArray = getters.toArray;
     const mean = getters.mean;
     let meanAbsoluteDeviation = 0;
@@ -179,6 +184,6 @@ export default {
       meanAbsoluteDeviation += Math.abs(numArray[i] - mean);
     }
 
-    return meanAbsoluteDeviation;
+    return +meanAbsoluteDeviation.toFixed(6);
   }
 };
