@@ -48,7 +48,7 @@ body {
   opacity: 0;
 }
 
-@media only screen and (min-width: 992px) {
+@media only screen and (min-width: 565px) {
   main {
     min-height: 559px;
   }

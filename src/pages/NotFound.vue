@@ -1,5 +1,5 @@
 <template>
     <h2>
-        Page not found. Do you want to <router-link to="/input">perform a calculation?</router-link>
+        Page not found. Do you want to <router-link to="/home">go back to home?</router-link>
     </h2>
 </template>

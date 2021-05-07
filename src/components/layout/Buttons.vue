@@ -1,5 +1,5 @@
 <template>
-    <div class="buttons mt-3">
+    <div class="buttons mt-3 mb-3" v-if="!(this.$route.name === 'not-found')">
         <button class="btn btn-primary btn-lg me-3" @click="previousStep" v-show="!isFirstStep()">
             Back
         </button>

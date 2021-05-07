@@ -3,7 +3,7 @@
   <tutorial></tutorial>
   <div class="row mb-3">
   <div class="col-sm-6">
-    <div class="card">
+    <div class="card h-100">
       <div class="card-body">
         <h5 class="card-title">Weighted Mean</h5>
         <p class="card-text">
@@ -14,7 +14,7 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-6">
+  <div class="col-sm-6 mt-3 mt-sm-0">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">z-Score</h5>
