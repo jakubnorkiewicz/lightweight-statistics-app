@@ -70,12 +70,12 @@ export default {
       weightsSum += weights[j];
     }
 
-    weightedMean = (totalWeight / weightsSum)
+    weightedMean = totalWeight / weightsSum;
 
-    if(isNaN(weightedMean)) {
-      return "Please follow the syntax for Weighted Mean."
-    } else if(weightedMean % 1 === 1) {
-      return weightedMean; 
+    if (isNaN(weightedMean)) {
+      return 'Please follow the syntax for Weighted Mean.';
+    } else if (weightedMean % 1 === 1) {
+      return weightedMean;
     } else {
       return weightedMean;
     }

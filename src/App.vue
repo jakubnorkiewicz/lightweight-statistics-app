@@ -1,14 +1,14 @@
 <template>
   <div class="container vh-100">
     <navigation></navigation>
-      <main>
-        <router-view v-slot="{ Component }">
-          <transition name="fade" mode="out-in">
-            <component :is="Component" />
-          </transition>
-        </router-view>
-      </main>
-      <buttons></buttons>
+    <main>
+      <router-view v-slot="{ Component }">
+        <transition name="fade" mode="out-in">
+          <component :is="Component" />
+        </transition>
+      </router-view>
+    </main>
+    <buttons></buttons>
     <the-footer></the-footer>
   </div>
 </template>
@@ -53,5 +53,4 @@ body {
     min-height: 559px;
   }
 }
-
 </style>

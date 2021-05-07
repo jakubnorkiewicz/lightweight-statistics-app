@@ -1,6 +1,6 @@
 <template>
   <div v-if="!isPopulated()">
-   <alert-no-input></alert-no-input>
+    <alert-no-input></alert-no-input>
   </div>
   <div v-else>
     <div class="formulas card p-3">
@@ -50,8 +50,9 @@
               <div class="card-text">
                 <div v-for="calculation in calculations" :key="calculation.id">
                   <div class="pb-2" v-if="formula.includes(calculation.type)">
-                    
-                    {{ calculation.name + ': ' + $store.getters[calculation.type] }}
+                    {{
+                      calculation.name + ': ' + $store.getters[calculation.type]
+                    }}
                   </div>
                 </div>
               </div>
@@ -65,7 +66,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import AlertNoInput from '../components/blocks/AlertNoInput.vue'
+import AlertNoInput from '../components/blocks/AlertNoInput.vue';
 
 export default {
   components: {
@@ -92,15 +93,13 @@ export default {
     }
   },
   methods: {
-    ...mapGetters([
-      'isPopulated',
-    ])
+    ...mapGetters(['isPopulated'])
   }
 };
 </script>
 
 <style scoped>
-@media only screen and (max-width: 575px) { 
+@media only screen and (max-width: 575px) {
   .form-check label {
     font-size: 20px;
   }

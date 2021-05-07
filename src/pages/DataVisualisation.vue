@@ -7,14 +7,23 @@
       <div class="row">
         <div class="col-sm-12 col-md-6 mb-3 mt-sm-0">
           <div class="card info text-dark bg-secondary">
-          <div class="card-header">
-            <b>How to use graphs?</b>
-          </div>
+            <div class="card-header">
+              <b>How to use graphs?</b>
+            </div>
             <div class="card-body">
               <div class="card-text ms-2 me-2">
-                <p>The graphs displayed on this page allow you to get a visualisation of your dataset.</p>
-                <p>You can zoom the graph if the data difference makes some values unreadable.</p>
-                <p>You can download the graphs by clicking the burger menu and then selecting one of the download options.</p>
+                <p>
+                  The graphs displayed on this page allow you to get a
+                  visualisation of your dataset.
+                </p>
+                <p>
+                  You can zoom the graph if the data difference makes some
+                  values unreadable.
+                </p>
+                <p>
+                  You can download the graphs by clicking the burger menu and
+                  then selecting one of the download options.
+                </p>
               </div>
             </div>
           </div>
@@ -30,7 +39,6 @@
         </div>
       </div>
       <div class="row">
-        
         <div class="col-sm-12">
           <apexchart
             type="bar"
@@ -182,7 +190,6 @@ export default {
   }
 };
 </script>
-
 
 <style>
 .card-header,
