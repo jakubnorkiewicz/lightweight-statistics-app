@@ -1,11 +1,11 @@
 <template>
-    <div>
-        <button class="btn btn-primary btn-lg mb-3 me-3" @click="previousStep" v-show="!isFirstStep()">
+    <div class="buttons mt-3">
+        <button class="btn btn-primary btn-lg me-3" @click="previousStep" v-show="!isFirstStep()">
             Back
         </button>
         
-        <button :disabled="!isPopulated()" class="btn btn-primary btn-lg mb-3" @click="nextStep" v-show="!isLastStep()">
-            Next
+        <button :disabled="!isPopulated()" class="btn btn-primary btn-lg" @click="nextStep" v-show="!isLastStep()">
+            {{ nextText() }}
         </button>
     </div>
 </template>
@@ -41,6 +41,13 @@ import { mapGetters } from 'vuex';
                 } else if (this.$route.name === 'home') {
                     this.$router.push('/calculate')
                 } 
+            },
+            nextText() {
+                if(this.$route.name === 'calculate') {
+                    return 'Show Graphs'
+                } else {
+                    return 'Next'
+                }
             },
             ...mapGetters([
             'isPopulated'
