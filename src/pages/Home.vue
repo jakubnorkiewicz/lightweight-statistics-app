@@ -58,10 +58,7 @@ import Tutorial from '../components/blocks/Tutorial';
 export default {
   methods: {
     validateInput() {
-      this.$store.state.dataset = this.$store.state.dataset.replace(
-        /[^-?0-9., ]/g,
-        ''
-      );
+      this.$store.state.dataset = this.$store.state.dataset.replace(/[^-?0-9., ]/g,'');
     },
     ...mapGetters(['isPopulated'])
   },

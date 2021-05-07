@@ -157,7 +157,7 @@ export default {
       }
     }
 
-    if (bestOccurence == 1) {
+    if (bestOccurence <= 1) {
       return 'Cannot find mode. Numbers in the dataset do not repeat.';
     } else {
       return mode;
