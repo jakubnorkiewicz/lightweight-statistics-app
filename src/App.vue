@@ -1,39 +1,37 @@
 <template>
-  <div class="container">
+  <div class="container min-vh-100">
     <navigation></navigation>
-    <div class="page-name">
-      <h1>{{ $route.name }}</h1>
-    </div>
-    <main class="box mt-5 mb-3">
-      <router-view v-slot="{ Component }">
-        <transition name="fade" mode="out-in">
-          <component :is="Component" />
-        </transition>
-      </router-view>
-    </main>
-    <buttons></buttons>
+      <main class="h-50">
+        <router-view v-slot="{ Component }">
+          <transition name="fade" mode="out-in">
+            <component :is="Component" />
+          </transition>
+        </router-view>
+      </main>
+      <buttons></buttons>
+    <the-footer></the-footer>
   </div>
 </template>
 
 <script>
-import Buttons from './components/Buttons.vue';
-import Navigation from './components/Navigation.vue';
+import Buttons from './components/layout/Buttons.vue';
+import Navigation from './components/layout/Navigation.vue';
+import TheFooter from './components/layout/Footer.vue';
 
 export default {
   components: {
     Navigation,
-    Buttons
+    Buttons,
+    TheFooter
   }
 };
 </script>
 
 <style>
-* {
-  box-sizing: border-box;
-}
-
-html {
+html,
+body {
   font-family: sans-serif;
+  height: 100%;
 }
 
 .page-name h1 {

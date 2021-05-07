@@ -1,6 +1,7 @@
 <template>
-<div class="input-page">
-  <div class="row mb-5">
+<div class="homepage">
+  <tutorial></tutorial>
+  <div class="row mb-3">
   <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
@@ -27,9 +28,10 @@
     </div>
   </div>
 </div>
-  <span class="input-group-text mb-3">Enter the numbers</span>
+  <span class="input-group-text mb-3"><b>Enter the numbers</b>
+</span>
   <textarea 
-    class="form-control mb-3" 
+    class="form-control" 
     aria-label="Enter the numbers" 
     name="dataset" 
     id="dataset" 
@@ -39,21 +41,22 @@
     v-model="dataset" 
     placeholder="e.g. 1, 2, 3, 4">
     </textarea>
-    <div class="alert alert-warning" role="alert" v-if="!isPopulated()">
+    <div class="alert alert-warning mt-3" role="alert" v-if="!isPopulated()">
       The dataset should contain at least 2 numbers.
     </div>
     </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
+import Tutorial from '../components/blocks/Tutorial'
+
 
 export default {
   methods: {
     validateInput() {
       this.$store.state.dataset = this.$store.state.dataset.replace(/[^-?0-9., ]/g,'');
     },
-    ...mapActions (['setDataset']),
     ...mapGetters (['isPopulated'])
   },
   computed: {
@@ -61,11 +64,14 @@ export default {
       get() {
         return this.$store.state.dataset;
       },
-      set(newDataset) {
-        this.setDataset(newDataset);
+      set(value) {
+        this.$store.commit('setDataset', value);
       }
     }
   },
+  components: {
+    Tutorial,
+  }
 };
 </script>
 
