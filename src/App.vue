@@ -1,7 +1,7 @@
 <template>
-  <div class="container min-vh-100">
+  <div class="container vh-100">
     <navigation></navigation>
-      <main class="h-50">
+      <main>
         <router-view v-slot="{ Component }">
           <transition name="fade" mode="out-in">
             <component :is="Component" />
@@ -47,4 +47,11 @@ body {
 .fade-leave-to {
   opacity: 0;
 }
+
+@media only screen and (min-width: 992px) {
+  main {
+    min-height: 559px;
+  }
+}
+
 </style>

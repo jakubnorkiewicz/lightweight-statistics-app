@@ -53,7 +53,7 @@
                 <div v-for="calculation in calculations" :key="calculation.id">
                   <div class="pb-2" v-if="formula.includes(calculation.type)">
                     
-                    {{ calculation.name+ ': ' + this.$store.getters[calculation.type] }}
+                    {{ calculation.name + ': ' + $store.getters[calculation.type] }}
                   </div>
                 </div>
               </div>
@@ -97,4 +97,5 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>
